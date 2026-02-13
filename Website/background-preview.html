@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Background Color Options - Guddge</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        .preview-container {
+            display: flex;
+            flex-wrap: wrap;
+            min-height: 100vh;
+        }
+
+        .option {
+            flex: 1;
+            min-width: 300px;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            color: white;
+            text-align: center;
+        }
+
+        .option h2 {
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .option .color-code {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            margin-bottom: 1rem;
+            font-family: monospace;
+        }
+
+        .option img {
+            max-width: 200px;
+            margin: 1rem 0;
+        }
+
+        .option p {
+            max-width: 250px;
+            opacity: 0.8;
+        }
+
+        /* Option 1: Dark Navy Blue */
+        .option-1 {
+            background: #1a1a2e;
+        }
+
+        /* Option 2: Bright Blue */
+        .option-2 {
+            background: #2563eb;
+        }
+
+        /* Option 3: Gradient (Current) */
+        .option-3 {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 1rem;
+            z-index: 1000;
+            text-align: center;
+            color: white;
+        }
+
+        header h1 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        header p {
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>🎨 Background Color Preview</h1>
+        <p>Scroll down or resize to compare all options</p>
+    </header>
+
+    <div class="preview-container">
+        <!-- Option 1 -->
+        <div class="option option-1">
+            <h2>Option 1</h2>
+            <div class="color-code">#1a1a2e</div>
+            <img src="guddge_logo.png" alt="Guddge Logo">
+            <p><strong>Dark Navy Blue</strong><br>Professional, sleek, and sophisticated. Great for tech and enterprise
+                companies.</p>
+        </div>
+
+        <!-- Option 2 -->
+        <div class="option option-2">
+            <h2>Option 2</h2>
+            <div class="color-code">#2563eb</div>
+            <img src="guddge_logo_white.png" alt="Guddge Logo">
+            <p><strong>Bright Blue</strong><br>Energetic and modern. Creates a bold, attention-grabbing look.</p>
+        </div>
+
+        <!-- Option 3 -->
+        <div class="option option-3">
+            <h2>Option 3</h2>
+            <div class="color-code">Gradient</div>
+            <img src="guddge_logo.png" alt="Guddge Logo">
+            <p><strong>Deep Gradient</strong><br>Rich depth with smooth transitions. Current hero section style.</p>
+        </div>
+    </div>
+</body>
+
+</html>

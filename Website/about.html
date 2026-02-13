@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Guddge - Enterprise Information Management</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-blue: #3a6d8c;
+            --dark-blue: #2d5468;
+            --light-blue: #f0f7f9;
+            --white: #FFFFFF;
+            --text-dark: #1a1a2e;
+            --text-gray: #4b5563;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background: #ffffff;
+        }
+
+        header {
+            background: #fff;
+            padding: 1rem 2rem;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+
+        .logo img {
+            height: 50px;
+            width: auto;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-gray);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-blue);
+        }
+
+        .cta-button {
+            background: var(--primary-blue);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background 0.3s;
+        }
+
+        .cta-button:hover {
+            background: var(--dark-blue);
+        }
+
+        .page-header {
+            padding: 10rem 2rem 5rem;
+            background: var(--primary-blue);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.1) 0%, transparent 100%);
+            z-index: 1;
+        }
+
+        .page-header h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            max-width: 800px;
+            font-weight: 800;
+            position: relative;
+            z-index: 2;
+        }
+
+        .page-header p {
+            font-size: 1.3rem;
+            max-width: 700px;
+            opacity: 0.95;
+            position: relative;
+            z-index: 2;
+            line-height: 1.6;
+        }
+
+        .section {
+            padding: 7rem 2rem;
+        }
+
+        .section-title {
+            font-size: 2.8rem;
+            margin-bottom: 2.5rem;
+            color: var(--text-dark);
+            font-weight: 800;
+        }
+
+        .content-block {
+            max-width: 850px;
+            margin: 0 auto;
+        }
+
+        .content-block p {
+            margin-bottom: 2rem;
+            color: var(--text-gray);
+            font-size: 1.15rem;
+            line-height: 1.8;
+        }
+
+        .numbers-section {
+            background: var(--primary-blue);
+            color: white;
+            padding: 7rem 2rem;
+        }
+
+        .numbers-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 4rem;
+            text-align: center;
+        }
+
+        .number-card .number {
+            font-size: 4rem;
+            font-weight: 800;
+            color: var(--white);
+            margin-bottom: 0.5rem;
+        }
+
+        .number-card .label {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .leadership-section {
+            background: white;
+        }
+
+        .leadership-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .leader-card {
+            background: var(--white);
+            padding: 3rem 2.5rem;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            border: 1px solid #f0f0f0;
+            transition: all 0.3s ease;
+        }
+
+        .leader-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+        }
+
+        .leader-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-dark);
+            font-weight: 700;
+        }
+
+        .leader-card .role {
+            color: var(--primary-blue);
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .leader-card p {
+            color: var(--text-gray);
+            font-size: 1rem;
+            line-height: 1.7;
+        }
+
+        .values-section {
+            background: var(--light-blue);
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .value-card {
+            background: white;
+            padding: 3rem 2.5rem;
+            border-radius: 16px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.03);
+            border-top: 5px solid var(--primary-blue);
+            transition: all 0.3s ease;
+        }
+
+        .value-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(58, 109, 140, 0.1);
+        }
+
+        .value-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 1.2rem;
+            color: var(--primary-blue);
+            font-weight: 700;
+        }
+
+        .value-card p {
+            color: var(--text-gray);
+            line-height: 1.7;
+            font-size: 1rem;
+        }
+
+        .cta-section {
+            background: var(--primary-blue);
+            color: white;
+            text-align: center;
+            padding: 7rem 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(0, 0, 0, 0.05) 0%, transparent 100%);
+        }
+
+        .cta-section h2 {
+            font-size: 2.8rem;
+            margin-bottom: 1.5rem;
+            font-weight: 800;
+            position: relative;
+            z-index: 2;
+        }
+
+        .cta-section p {
+            font-size: 1.3rem;
+            opacity: 0.95;
+            margin-bottom: 3rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.7;
+            position: relative;
+            z-index: 2;
+        }
+
+        footer {
+            background: #001a33;
+            color: white;
+            padding: 5rem 2rem 2rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 4rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .footer-section {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .footer-section.logo-section {
+            align-items: flex-start;
+        }
+
+        .footer-section.logo-section img {
+            height: 45px;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-section p {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .footer-section h4 {
+            margin-bottom: 1.5rem;
+            color: #fff;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 1.1rem;
+        }
+
+        .footer-section a {
+            display: block;
+            color: rgba(255, 255, 255, 0.6);
+            text-decoration: none;
+            margin-bottom: 0.8rem;
+            transition: all 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: white;
+            transform: translateX(5px);
+        }
+
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 4rem auto 0;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .page-header h1 {
+                font-size: 2.8rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .section-title {
+                font-size: 2.2rem;
+            }
+
+            .numbers-grid {
+                gap: 2rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <a href="index.html" class="logo">
+                <img src="guddge_logo.png" alt="Guddge">
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="clients.html">Clients</a></li>
+                <li><a href="showcase.html">Showcase</a></li>
+                <li><a href="careers.html">Careers</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <a href="contact.html" class="cta-button">Get Started</a>
+        </nav>
+    </header>
+
+    <section class="page-header">
+        <h1>About Guddge</h1>
+        <p>Enterprise Information Management excellence through innovation, strategic advice, and proven delivery.</p>
+    </section>
+
+    <section class="section">
+        <div class="content-block">
+            <h2 class="section-title">Who We Are</h2>
+            <p>For over 15 years, Guddge LLC has been delivering end-to-end tech solutions for an array of corporate
+                entities, government agencies, educational institutions, and more. At Guddge, we seamlessly integrate
+                deep business insights, innovative technology, and robust leadership to deliver top-tier Enterprise
+                Information Management services, including platform support.</p>
+
+            <p>We're not typical consultants—we're seasoned industry veterans who stay up-to-date with the latest
+                advancements and best practices to ensure that we deliver innovative solutions that drive efficiency,
+                productivity, and growth for our clients.</p>
+
+            <p>Our proof point is built on long-term relationships and strategic advice. We take the time to understand
+                your unique business requirements, building customized solutions that align with your business
+                objectives and deliver lasting results.</p>
+        </div>
+    </section>
+
+    <section class="numbers-section">
+        <h2 style="text-align: center; font-size: 2.8rem; margin-bottom: 4rem; color: white; font-weight: 800;">Guddge
+            by the Numbers</h2>
+        <div class="numbers-grid">
+            <div class="number-card">
+                <div class="number">15+</div>
+                <div class="label">Years in Business</div>
+            </div>
+            <div class="number-card">
+                <div class="number">12+</div>
+                <div class="label">Large Clients</div>
+            </div>
+            <div class="number-card">
+                <div class="number">50+</div>
+                <div class="label">Expert Consultants</div>
+            </div>
+            <div class="number-card">
+                <div class="number">90+</div>
+                <div class="label">Projects Completed</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section leadership-section">
+        <h2 class="section-title" style="text-align: center;">Our Leadership Team</h2>
+        <p
+            style="text-align: center; max-width: 600px; margin: -1rem auto 4rem; color: var(--text-gray); font-size: 1.1rem;">
+            Former enterprise IT
+            leaders who understand your challenges firsthand.</p>
+
+        <div class="leadership-grid">
+            <div class="leader-card">
+                <h3>Mukesh Saraogi</h3>
+                <p class="role">Chief Operating Officer</p>
+                <p>Mukesh has been with Guddge LLC for over 10 years, evolving from a diligent IT consultant with over
+                    20 years of experience to our Chief Operating Officer. He significantly contributes to our company’s
+                    standout success in technology consulting.</p>
+            </div>
+            <div class="leader-card">
+                <h3>Ramya Vayuvegula</h3>
+                <p class="role">Global Operations Lead and Resource Manager</p>
+                <p>Ramya has over 12 years of experience in Data Engineering and Analytics. She excels in hiring the
+                    right talent and successfully designing and implementing SAP projects, with a strong focus on
+                    leveraging data to drive business initiatives.</p>
+            </div>
+            <div class="leader-card">
+                <h3>Ritesh Agarwal</h3>
+                <p class="role">Offshore Lead and Support</p>
+                <p>With 22 years of experience in the IT industry, Ritesh is a seasoned professional specializing in
+                    offshore operations, team leadership, and IT service management, ensuring seamless collaboration
+                    between global teams.</p>
+            </div>
+            <div class="leader-card">
+                <h3>John D. Bonam</h3>
+                <p class="role">Sales and Operations Managing Director</p>
+                <p>A dynamic leader with over 25 years of experience driving revenue growth and operational excellence.
+                    John focuses on strategic business development and strengthening key partnerships to ensure customer
+                    satisfaction.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section values-section">
+        <h2 class="section-title" style="text-align: center;">Our Values</h2>
+        <div class="values-grid">
+            <div class="value-card">
+                <h3>Enterprise Experience</h3>
+                <p>We don't guess at enterprise challenges. We've lived them. Our team has been in your shoes, which
+                    means we understand the politics, budgets, and risks you face daily.</p>
+            </div>
+            <div class="value-card">
+                <h3>Long-term Partnerships</h3>
+                <p>We build relationships that last. Our average client partnership spans 12+ years because we deliver
+                    ongoing value, not just one-off project completions.</p>
+            </div>
+            <div class="value-card">
+                <h3>Proven Execution</h3>
+                <p>Talk is cheap. Our track record of 90+ successful projects proves we can handle enterprise complexity
+                    without disrupting your operations.</p>
+            </div>
+            <div class="value-card">
+                <h3>No Disruptions</h3>
+                <p>We know you can't afford downtime. Every transformation we deliver is designed to keep your business
+                    running smoothly while we modernize your technology.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <h2>Ready to Transform Your Enterprise?</h2>
+        <p>Let's discuss how our experience can help your organization modernize without the risks.</p>
+        <a href="contact.html" class="cta-button" style="background: white; color: var(--primary-blue);">Schedule a
+            Consultation</a>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section logo-section">
+                <img src="guddge_logo_white.png" alt="Guddge">
+                <p>Enterprise Information Management excellence through innovation, strategic advice, and proven
+                    delivery.</p>
+            </div>
+            <div class="footer-section">
+                <h4>Services</h4>
+                <a href="services.html">Legacy Modernization</a>
+                <a href="services.html">Cloud Infrastructure</a>
+                <a href="services.html">AI & Analytics</a>
+            </div>
+            <div class="footer-section">
+                <h4>Company</h4>
+                <a href="about.html">About Us</a>
+                <a href="clients.html">Clients</a>
+                <a href="careers.html">Careers</a>
+            </div>
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <a href="contact.html">Get in Touch</a>
+                <a href="mailto:info@guddge.com">info@guddge.com</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2024 Guddge. All rights reserved.
+        </div>
+    </footer>
+
+    <script src="chatbot.js"></script>
+    <script src="scroll-arrows.js"></script>
+</body>
+
+</html>

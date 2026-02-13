@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clients & Case Studies - Guddge Enterprise Information Management</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-blue: #3a6d8c;
+            --dark-blue: #2d5468;
+            --light-blue: #f0f7f9;
+            --white: #FFFFFF;
+            --text-dark: #1a1a2e;
+            --text-gray: #4b5563;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background: #ffffff;
+        }
+
+        header {
+            background: #fff;
+            padding: 1rem 2rem;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+
+        .logo img {
+            height: 50px;
+            width: auto;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-gray);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-blue);
+        }
+
+        .cta-button {
+            background: var(--primary-blue);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background 0.3s;
+        }
+
+        .cta-button:hover {
+            background: var(--dark-blue);
+        }
+
+        .page-header {
+            padding: 10rem 2rem 5rem;
+            background: var(--primary-blue);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.1) 0%, transparent 100%);
+            z-index: 1;
+        }
+
+        .page-header h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            max-width: 800px;
+            font-weight: 800;
+            position: relative;
+            z-index: 2;
+        }
+
+        .page-header p {
+            font-size: 1.3rem;
+            max-width: 700px;
+            opacity: 0.95;
+            position: relative;
+            z-index: 2;
+            line-height: 1.6;
+        }
+
+        .section {
+            padding: 7rem 2rem;
+        }
+
+        .section-title {
+            font-size: 2.8rem;
+            margin-bottom: 2.5rem;
+            color: var(--text-dark);
+            font-weight: 800;
+            text-align: center;
+        }
+
+        .intro-text {
+            max-width: 800px;
+            margin: 0 auto 5rem;
+            text-align: center;
+            color: var(--text-gray);
+            font-size: 1.25rem;
+            line-height: 1.8;
+        }
+
+        .case-studies-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            gap: 3rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .case-study-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            border: 1px solid #f0f0f0;
+        }
+
+        .case-study-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
+        }
+
+        .case-study-header {
+            background: var(--primary-blue);
+            color: white;
+            padding: 2.5rem;
+            position: relative;
+        }
+
+        .case-study-header h3 {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        .case-study-header .industry {
+            font-size: 0.95rem;
+            opacity: 0.9;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            font-weight: 600;
+        }
+
+        .case-study-content {
+            padding: 3rem;
+        }
+
+        .case-study-block {
+            margin-bottom: 2rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .case-study-block:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+
+        .case-study-block h4 {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+            font-weight: 800;
+        }
+
+        .case-study-block p {
+            color: var(--text-gray);
+            font-size: 1.05rem;
+            line-height: 1.7;
+        }
+
+        .case-study-block .outcome {
+            color: #2a7a5f;
+            font-weight: 700;
+            font-size: 1.15rem;
+            line-height: 1.6;
+        }
+
+        .metrics-section {
+            background: var(--primary-blue);
+            color: white;
+            padding: 8rem 2rem;
+        }
+
+        .metrics-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 4rem;
+            text-align: center;
+        }
+
+        .metric-card .number {
+            font-size: 4.5rem;
+            font-weight: 800;
+            color: var(--white);
+            margin-bottom: 0.5rem;
+        }
+
+        .metric-card .label {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+        }
+
+        .testimonials-section {
+            background: white;
+            padding: 8rem 2rem;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .testimonial-card {
+            background: var(--light-blue);
+            padding: 4rem 3rem;
+            border-radius: 24px;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .testimonial-card:hover {
+            transform: scale(1.02);
+            background: #fff;
+            box-shadow: 0 10px 40px rgba(58, 109, 140, 0.1);
+        }
+
+        .testimonial-card p {
+            font-style: italic;
+            color: var(--text-dark);
+            margin-bottom: 2.5rem;
+            font-size: 1.15rem;
+            line-height: 1.8;
+            position: relative;
+            z-index: 2;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .testimonial-author .avatar {
+            width: 60px;
+            height: 60px;
+            background: var(--primary-blue);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 1.4rem;
+            box-shadow: 0 5px 15px rgba(58, 109, 140, 0.3);
+        }
+
+        .testimonial-author .name {
+            font-weight: 700;
+            color: var(--text-dark);
+            font-size: 1.1rem;
+        }
+
+        .testimonial-author .title {
+            font-size: 0.9rem;
+            color: var(--text-gray);
+        }
+
+        .cta-section {
+            background: var(--primary-blue);
+            color: white;
+            text-align: center;
+            padding: 8rem 2rem;
+        }
+
+        .cta-section h2 {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            font-weight: 800;
+        }
+
+        .cta-section p {
+            font-size: 1.3rem;
+            opacity: 0.95;
+            margin-bottom: 3.5rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        footer {
+            background: #001a33;
+            color: white;
+            padding: 5rem 2rem 2rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 4rem;
+        }
+
+        .footer-section {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .footer-section.logo-section img {
+            height: 45px;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-section p {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .footer-section h4 {
+            margin-bottom: 1.5rem;
+            color: #fff;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .footer-section a {
+            display: block;
+            color: rgba(255, 255, 255, 0.6);
+            text-decoration: none;
+            margin-bottom: 0.8rem;
+            transition: all 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: white;
+            transform: translateX(5px);
+        }
+
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 4rem auto 0;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .page-header h1 {
+                font-size: 2.8rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .case-studies-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .case-study-header,
+            .case-study-content {
+                padding: 2rem;
+            }
+        }
+    </style>
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <a href="index.html" class="logo">
+                <img src="guddge_logo.png" alt="Guddge">
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="clients.html">Clients</a></li>
+                <li><a href="showcase.html">Showcase</a></li>
+                <li><a href="careers.html">Careers</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <a href="contact.html" class="cta-button">Get Started</a>
+        </nav>
+    </header>
+
+    <section class="section">
+        <h2 class="section-title">CREATING CUSTOM SOLUTIONS</h2>
+        <p class="intro-text">For over 15 years, Guddge LLC has been delivering end-to-end tech solutions for an array
+            of corporate entities, government agencies, educational institutions, and more.</p>
+        <p class="intro-text">We are customer-focused and believe in building strong and lasting relationships with our
+            clients. We take the time to understand their unique business requirements, challenges, and objectives. By
+            gaining insight into their specific needs, we can tailor our solutions to provide the maximum value and
+            impact to their organization. We also understand that every business is different, and there is no
+            one-size-fits-all solution. That’s why we take a customized approach to address our clients’ specific IT
+            needs. Below are some examples of how we have worked closely with our clients to create tailored solutions
+            that align with their business objectives.</p>
+
+        <div class="case-studies-grid">
+            <!-- Case Study 1: Sempra -->
+            <div class="case-study-card">
+                <div class="case-study-header" style="background: white; border-bottom: 1px solid #f0f0f0;">
+                    <img src="sempra.png" alt="Sempra" style="height: 60px; width: auto; margin-bottom: 1rem;">
+                    <p class="industry" style="color: var(--text-gray);">Energy & Utilities</p>
+                </div>
+                <div class="case-study-content">
+                    <div class="case-study-block">
+                        <h4>OVER A DECADE OF ONGOING PARTNERSHIP TO ENHANCE OPERATIONAL EFFICIENCY</h4>
+                        <p>Since 2012, we have been instrumental in Sempra’s digital transformation, starting with
+                            analytics for smart meter implementation and evolving to a Gas Operations Data Lake in SAP
+                            HANA. Our ongoing partnership now focuses on cloud-based data lakes and data science on AWS,
+                            emphasizing advanced technology integration and robust data governance for enhanced
+                            operational efficiency and informed decision-making.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Case Study 2: Buncombe County -->
+            <div class="case-study-card">
+                <div class="case-study-header" style="background: white; border-bottom: 1px solid #f0f0f0;">
+                    <img src="buncombe_logo.png" alt="Buncombe County"
+                        style="height: 60px; width: auto; margin-bottom: 1rem;">
+                    <p class="industry" style="color: var(--text-gray);">Government</p>
+                </div>
+                <div class="case-study-content">
+                    <div class="case-study-block">
+                        <h4>FACILITATING SEAMLESS DATA INTEGRATION</h4>
+                        <p>We provided IT consulting to Buncombe County, focusing on establishing a comprehensive data
+                            warehouse. Our expertise in selecting suitable technologies facilitated seamless data
+                            integration and efficient analysis. This collaboration created a robust data environment,
+                            enabling improved decision-making and operational efficiency for the county.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Case Study 3: Amtrak -->
+            <div class="case-study-card">
+                <div class="case-study-header" style="background: white; border-bottom: 1px solid #f0f0f0;">
+                    <img src="amtrak.png" alt="Amtrak" style="height: 40px; width: auto; margin-bottom: 1.5rem;">
+                    <p class="industry" style="color: var(--text-gray);">Transportation</p>
+                </div>
+                <div class="case-study-content">
+                    <div class="case-study-block">
+                        <h4>SIGNIFICANTLY BOOSTING OPERATIONAL EFFICIENCY AND DECISION-MAKING</h4>
+                        <p>We developed four enterprise dashboards for Amtrak, enhancing fleet maintenance and financial
+                            management using Business Objects and other technologies. Our comprehensive involvement from
+                            requirement analysis to design and integration of data warehousing, has significantly
+                            boosted operational efficiency and decision-making.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Case Study 4: First Student -->
+            <div class="case-study-card">
+                <div class="case-study-header" style="background: white; border-bottom: 1px solid #f0f0f0;">
+                    <img src="firststudent_logo.png" alt="First Student"
+                        style="height: 50px; width: auto; margin-bottom: 1rem;">
+                    <p class="industry" style="color: var(--text-gray);">Transportation & Education</p>
+                </div>
+                <div class="case-study-content">
+                    <div class="case-study-block">
+                        <h4>REVOLUTIONIZING DATA INTEGRATION AND ANALYTICS</h4>
+                        <p>Our IT consulting services for First Student revolutionized their data integration and
+                            analytics. We harmonized disparate data sources and implemented advanced analytics
+                            solutions, providing data-driven insights that significantly enhanced their operational
+                            efficiency and strategic decision-making in the transportation sector.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Case Study 5: Dassault Systèmes -->
+            <div class="case-study-card">
+                <div class="case-study-header" style="background: white; border-bottom: 1px solid #f0f0f0;">
+                    <img src="dassault_logo.png" alt="Dassault Systèmes"
+                        style="height: 50px; width: auto; margin-bottom: 1rem;">
+                    <p class="industry" style="color: var(--text-gray);">Technology & Finance</p>
+                </div>
+                <div class="case-study-content">
+                    <div class="case-study-block">
+                        <h4>SIGNIFICANTLY UPGRADING FINANCIAL ANALYSIS AND DECISION-MAKING</h4>
+                        <p>Our engagement with Dassault Systems centered on developing financial reports using Business
+                            Objects XI and PeopleSoft Financials. From specifications to development, including currency
+                            conversion and management, we ensured the accuracy and consistency of financial reporting.
+                            This project significantly upgraded Dassault Systems’ financial analysis and decision-making
+                            processes.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    </section>
+
+    <section class="metrics-section">
+        <h2 style="text-align: center; font-size: 2.5rem; margin-bottom: 3rem;">Our Track Record</h2>
+        <div class="metrics-grid">
+            <div class="metric-card">
+                <div class="number">90+</div>
+                <div class="label">Projects Completed</div>
+            </div>
+            <div class="metric-card">
+                <div class="number">12+</div>
+                <div class="label">Years Average Client Relationship</div>
+            </div>
+            <div class="metric-card">
+                <div class="number">99.9%</div>
+                <div class="label">Average Uptime During Migrations</div>
+            </div>
+            <div class="metric-card">
+                <div class="number">40%</div>
+                <div class="label">Average Cost Reduction Achieved</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section testimonials-section">
+        <h2 class="section-title" style="text-align: center;">What Our Clients Say</h2>
+
+        <div class="testimonials-grid">
+            <div class="testimonial-card">
+                <p>"Guddge understood our business in ways other consultancies never did. They weren't just
+                    consultants—they'd been in our shoes. The 12-year partnership has been invaluable to our technology
+                    evolution."</p>
+                <div class="testimonial-author">
+                    <div class="avatar">JD</div>
+                    <div>
+                        <div class="name">John Davidson</div>
+                        <div class="title">CIO, Sempra Energy</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="testimonial-card">
+                <p>"We were nervous about migrating patient data to the cloud. Guddge's healthcare expertise and careful
+                    approach meant zero issues. They delivered exactly what they promised."</p>
+                <div class="testimonial-author">
+                    <div class="avatar">SR</div>
+                    <div>
+                        <div class="name">Sarah Rodriguez</div>
+                        <div class="title">CTO, Healthcare Company</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="testimonial-card">
+                <p>"The SAP upgrade went smoother than we imagined. Guddge's phased approach kept our manufacturing
+                    lines running. They delivered on time and on budget."</p>
+                <div class="testimonial-author">
+                    <div class="avatar">MK</div>
+                    <div>
+                        <div class="name">Michael Kim</div>
+                        <div class="title">VP of Operations, Manufacturing Enterprise</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <h2>Ready to Become Our Next Success Story?</h2>
+        <p>Let's discuss how we can help transform your technology infrastructure.</p>
+        <a href="contact.html" class="cta-button" style="background: white; color: #1a1a2e;">Schedule a Consultation</a>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section logo-section">
+                <img src="guddge_logo_white.png" alt="Guddge">
+                <p>Enterprise Information Management excellence through innovation, strategic advice, and proven
+                    delivery.</p>
+            </div>
+            <div class="footer-section">
+                <h4>Services</h4>
+                <a href="services.html">Legacy Modernization</a>
+                <a href="services.html">Cloud Infrastructure</a>
+                <a href="services.html">AI & Analytics</a>
+            </div>
+            <div class="footer-section">
+                <h4>Company</h4>
+                <a href="about.html">About Us</a>
+                <a href="clients.html">Clients</a>
+                <a href="careers.html">Careers</a>
+            </div>
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <a href="contact.html">Get in Touch</a>
+                <a href="mailto:info@guddge.com">info@guddge.com</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2024 Guddge. All rights reserved.
+        </div>
+    </footer>
+
+    <script src="chatbot.js"></script>
+    <script src="scroll-arrows.js"></script>
+</body>
+
+</html>

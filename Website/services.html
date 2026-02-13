@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services - Guddge Enterprise Information Management</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-blue: #3a6d8c;
+            --dark-blue: #2d5468;
+            --light-blue: #f0f7f9;
+            --white: #FFFFFF;
+            --text-dark: #1a1a2e;
+            --text-gray: #4b5563;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background: #ffffff;
+        }
+
+        header {
+            background: #fff;
+            padding: 1rem 2rem;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+
+        .logo img {
+            height: 50px;
+            width: auto;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-gray);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-blue);
+        }
+
+        .cta-button {
+            background: var(--primary-blue);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background 0.3s;
+        }
+
+        .cta-button:hover {
+            background: var(--dark-blue);
+        }
+
+        .page-header {
+            padding: 10rem 2rem 5rem;
+            background: var(--primary-blue);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.1) 0%, transparent 100%);
+            z-index: 1;
+        }
+
+        .page-header h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            max-width: 800px;
+            font-weight: 800;
+            position: relative;
+            z-index: 2;
+        }
+
+        .page-header p {
+            font-size: 1.3rem;
+            max-width: 700px;
+            opacity: 0.95;
+            position: relative;
+            z-index: 2;
+            line-height: 1.6;
+        }
+
+        .section {
+            padding: 5rem 2rem;
+        }
+
+        .scenario-section {
+            background: white;
+            padding: 7rem 2rem;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .scenario-section:last-child {
+            border-bottom: none;
+        }
+
+        .scenario-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .scenario-header {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .scenario-icon {
+            width: 70px;
+            height: 70px;
+            background: var(--primary-blue);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.2rem;
+            color: white;
+            box-shadow: 0 10px 20px rgba(58, 109, 140, 0.15);
+        }
+
+        .scenario-header h2 {
+            font-size: 2.5rem;
+            color: var(--text-dark);
+            font-weight: 800;
+        }
+
+        .scenario-description {
+            color: var(--text-gray);
+            font-size: 1.2rem;
+            margin-bottom: 3rem;
+            max-width: 800px;
+            line-height: 1.8;
+        }
+
+        .services-applied {
+            background: var(--light-blue);
+            padding: 3rem;
+            border-radius: 20px;
+            margin-bottom: 3rem;
+        }
+
+        .services-applied h3 {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            color: var(--primary-blue);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            font-weight: 700;
+        }
+
+        .services-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-item {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            border-left: 5px solid var(--primary-blue);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.03);
+            transition: transform 0.3s ease;
+        }
+
+        .service-item:hover {
+            transform: translateX(5px);
+        }
+
+        .service-item strong {
+            display: block;
+            margin-bottom: 0.8rem;
+            color: var(--text-dark);
+            font-size: 1.1rem;
+            font-weight: 700;
+        }
+
+        .service-item p {
+            font-size: 0.95rem;
+            color: var(--text-gray);
+            line-height: 1.6;
+        }
+
+        .cta-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--primary-blue);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: gap 0.3s ease;
+        }
+
+        .cta-link:hover {
+            gap: 1rem;
+            text-decoration: none;
+        }
+
+        .all-services-section {
+            background: var(--light-blue);
+            padding: 8rem 2rem;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .service-card {
+            background: white;
+            padding: 3rem;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(0, 0, 0, 0.03);
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
+        }
+
+        .service-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 1.2rem;
+            color: var(--text-dark);
+            font-weight: 700;
+        }
+
+        .service-card p {
+            color: var(--text-gray);
+            font-size: 1rem;
+            line-height: 1.7;
+        }
+
+        .cta-section {
+            background: var(--primary-blue);
+            color: white;
+            text-align: center;
+            padding: 8rem 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(0, 0, 0, 0.05) 0%, transparent 100%);
+        }
+
+        .cta-section h2 {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            font-weight: 800;
+            position: relative;
+            z-index: 2;
+        }
+
+        .cta-section p {
+            font-size: 1.3rem;
+            opacity: 0.95;
+            margin-bottom: 3rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.7;
+            position: relative;
+            z-index: 2;
+        }
+
+        footer {
+            background: #001a33;
+            color: white;
+            padding: 5rem 2rem 2rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 4rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .footer-section {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .footer-section.logo-section {
+            align-items: flex-start;
+        }
+
+        .footer-section.logo-section img {
+            height: 45px;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-section p {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .footer-section h4 {
+            margin-bottom: 1.5rem;
+            color: #fff;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 1.1rem;
+        }
+
+        .footer-section a {
+            display: block;
+            color: rgba(255, 255, 255, 0.6);
+            text-decoration: none;
+            margin-bottom: 0.8rem;
+            transition: all 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: white;
+            transform: translateX(5px);
+        }
+
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 4rem auto 0;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .page-header h1 {
+                font-size: 2.8rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .scenario-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+            }
+
+            .scenario-header h2 {
+                font-size: 2rem;
+            }
+
+            .services-applied {
+                padding: 2rem;
+            }
+        }
+    </style>
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <a href="index.html" class="logo">
+                <img src="guddge_logo.png" alt="Guddge">
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="clients.html">Clients</a></li>
+                <li><a href="showcase.html">Showcase</a></li>
+                <li><a href="careers.html">Careers</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <a href="contact.html" class="cta-button">Get Started</a>
+        </nav>
+    </header>
+
+    <section class="page-header">
+        <h1>Our Services</h1>
+        <p>Expertise and Innovation in every solution we deliver.</p>
+    </section>
+
+    <section class="section">
+        <h2 class="section-title">What We Do</h2>
+        <p class="section-subtitle">Our highly experienced team is here to assist with the following services:</p>
+
+        <div class="services-grid" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));">
+            <div class="service-card">
+                <h3>AI Development</h3>
+                <p>Leverage our experience and the power of Artificial Intelligence (AI) to drive operational efficiency
+                    and informed decision-making within your organization. Our AI solutions are designed to address your
+                    specific business needs, providing you with a competitive edge in your industry.</p>
+            </div>
+            <div class="service-card">
+                <h3>IT Consulting Services</h3>
+                <p>Our consultants help you align your IT and business objectives. We evaluate your current tech
+                    infrastructure, pinpoint improvement areas, and craft an optimization strategy to boost your
+                    performance and ROI.</p>
+            </div>
+            <div class="service-card">
+                <h3>Cloud Solutions</h3>
+                <p>Utilize cloud technology to improve collaboration, scalability, and adaptability. We handle cloud
+                    migration and continuous management, helping you employ cloud services to heighten operational
+                    effectiveness.</p>
+            </div>
+            <div class="service-card">
+                <h3>Software Development</h3>
+                <p>We design software solutions customized to your business needs. Ranging from web and mobile apps to
+                    enterprise systems, we use cutting-edge technology to produce secure, scalable, and user-friendly
+                    software.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <h2>Not Sure Where to Start?</h2>
+        <p>Let's talk through your challenges and find the right solution for your enterprise.</p>
+        <a href="contact.html" class="cta-button" style="background: white; color: #1a1a2e;">Schedule a Free
+            Consultation</a>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section logo-section">
+                <img src="guddge_logo_white.png" alt="Guddge">
+                <p>Enterprise Information Management excellence through innovation, strategic advice, and proven
+                    delivery.</p>
+            </div>
+            <div class="footer-section">
+                <h4>Services</h4>
+                <a href="services.html">Legacy Modernization</a>
+                <a href="services.html">Cloud Infrastructure</a>
+                <a href="services.html">AI & Analytics</a>
+            </div>
+            <div class="footer-section">
+                <h4>Company</h4>
+                <a href="about.html">About Us</a>
+                <a href="clients.html">Clients</a>
+                <a href="careers.html">Careers</a>
+            </div>
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <a href="contact.html">Get in Touch</a>
+                <a href="mailto:info@guddge.com">info@guddge.com</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2024 Guddge. All rights reserved.
+        </div>
+    </footer>
+
+    <script src="chatbot.js"></script>
+    <script src="scroll-arrows.js"></script>
+</body>
+
+</html>
